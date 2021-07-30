@@ -38,23 +38,24 @@ class _TabContainerDefaultState extends State<TabContainerDefault> {
             tabs: [
               Tab(
                 text: 'Home',
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home, color: Colors.grey),
               ),
               Tab(
                 text: 'Timer',
-                icon: Icon(Icons.access_time),
+                icon: Icon(Icons.access_time, color: Colors.grey),
               ),
               Tab(
                 text: 'Statistics',
-                icon: Icon(Icons.calendar_today),
+                icon: Icon(Icons.calendar_today, color: Colors.grey),
               ),
               Tab(
                 text: 'Settings',
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.settings, color: Colors.grey),
               ),
             ],
+            labelColor: Colors.grey,
           ),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Colors.white,
         ),
       ),
     );

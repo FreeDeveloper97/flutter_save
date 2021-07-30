@@ -16,16 +16,41 @@ class _Tab1State extends State<Tab1> with AutomaticKeepAliveClientMixin<Tab1> {
   Widget build(BuildContext context) {
     print('build Tab1');
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Center(
-        child: Text(
-          '홈화면',
-          style: TextStyle(fontSize: 30),
+        appBar: AppBar(
+          title: Text('Home'),
         ),
-      ),
-    );
+        body: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  child: Text(
+                    "마공",
+                    style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
+                  ),
+                  padding: EdgeInsets.only(top: 50, bottom: 120),
+                ),
+                FlatButton(
+                    onPressed: () {},
+                    child: Text('Study',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold))),
+                Padding(
+                  child: FlatButton(
+                      onPressed: () {},
+                      child: Text('Relaxer',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold))),
+                  padding: EdgeInsets.only(top: 30, bottom: 30),
+                ),
+                FlatButton(
+                    onPressed: () {},
+                    child: Text('Statistics',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold))),
+              ]),
+        ));
   }
 
   @override
