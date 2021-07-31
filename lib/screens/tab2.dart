@@ -76,10 +76,15 @@ class _Tab2State extends State<Tab2> with AutomaticKeepAliveClientMixin<Tab2> {
             (todo) => DataRow(
                 selected: selectedTodos.contains(todo),
                 onSelectChanged: (b) {
-                  print("Onselect");
                   onSelectedRow(b, todo);
                 },
                 cells: [
+                  // DataCell(
+                  //   new Radio(value: false, onChanged: (bool value) {}),
+                  //   onTap: () {
+                  //     onSelectedRow(true, todo);
+                  //   },
+                  // ),
                   DataCell(
                     Text(todo.text),
                     onTap: () {
@@ -164,11 +169,6 @@ class _Tab2State extends State<Tab2> with AutomaticKeepAliveClientMixin<Tab2> {
             onPressed: () {},
             child: Icon(Icons.add),
           )
-          FlatButton(
-                    onPressed: () {},
-                    child: Text('Statistics',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold))),
         ])));
   }
 
