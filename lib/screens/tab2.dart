@@ -6,11 +6,99 @@ class Tab2 extends StatefulWidget {
   _Tab2State createState() => _Tab2State();
 }
 
+class Todo {
+  String text;
+  String time;
+  bool isFinished;
+
+  Todo({this.text, this.time, this.isFinished});
+
+  static List<Todo> getUsers() {
+    return <Todo>[
+      Todo(text: "미션1", time: "1:23:45", isFinished: false),
+      Todo(text: "checkout", time: "1:23:45", isFinished: false),
+      Todo(text: "Aaryan", time: "1:23:45", isFinished: false),
+      Todo(text: "플러터 싫어", time: "1:23:45", isFinished: false),
+      Todo(text: "Aaryan", time: "1:23:45", isFinished: false),
+    ];
+  }
+}
+
 class _Tab2State extends State<Tab2> with AutomaticKeepAliveClientMixin<Tab2> {
+  List<Todo> todos;
+  List<Todo> selectedTodos;
+  bool sort;
+
   @override
   void initState() {
+    sort = false;
+    selectedTodos = [];
+    todos = Todo.getUsers();
     super.initState();
-    print('initState Tab2');
+  }
+
+  void onSelectedRow(bool selected, Todo todo) async {
+    setState(() {
+      if (selected) {
+        selectedTodos.add(todo);
+      } else {
+        selectedTodos.remove(todo);
+      }
+    });
+  }
+
+  DataTable dataBody() {
+    return DataTable(
+      columns: [
+        // DataColumn(
+        //   label: Text("select"),
+        //   numeric: false,
+        //   tooltip: "select",
+        // ),
+        DataColumn(
+          label: Text("task name"),
+          numeric: false,
+          tooltip: "task name",
+        ),
+        DataColumn(
+          label: Text("task time"),
+          numeric: false,
+          tooltip: "task time",
+        ),
+        DataColumn(
+          label: Text("finished"),
+          numeric: false,
+          tooltip: "finished",
+        ),
+      ],
+      rows: todos
+          .map(
+            (todo) => DataRow(
+                selected: selectedTodos.contains(todo),
+                onSelectChanged: (b) {
+                  print("Onselect");
+                  onSelectedRow(b, todo);
+                },
+                cells: [
+                  DataCell(
+                    Text(todo.text),
+                    onTap: () {
+                      // print('Selected ${todo.text}');
+                    },
+                  ),
+                  DataCell(
+                    Text(todo.time),
+                  ),
+                  DataCell(
+                    new Checkbox(value: false, onChanged: (bool value) {}),
+                    onTap: () {
+                      // print('Selected ${todo.text}');
+                    },
+                  ),
+                ]),
+          )
+          .toList(),
+    );
   }
 
   SizedBox getCircularBox2() {
@@ -71,14 +159,16 @@ class _Tab2State extends State<Tab2> with AutomaticKeepAliveClientMixin<Tab2> {
             child: Column(children: <Widget>[
           getCircularBox2(),
           getSwitch(),
-          Row(
-            children: [
-              new Checkbox(value: false, onChanged: (bool value) {}),
-              Text("오늘은 미션이 없는 날"),
-              Text("1:23:45:"),
-              new Checkbox(value: false, onChanged: (bool value) {}),
-            ],
+          dataBody(),
+          FloatingActionButton(
+            onPressed: () {},
+            child: Icon(Icons.add),
           )
+          FlatButton(
+                    onPressed: () {},
+                    child: Text('Statistics',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold))),
         ])));
   }
 
